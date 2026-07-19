@@ -23,8 +23,8 @@ class Main(context: ExtensionContext) : ExtensionAPI(context) {
     private var ocamlRunner: OcamlRunner? = null
     private var duneRunner: DuneRunner? = null
 
-    override fun onExtensionLoaded() {
-        val fileProviderRegistry = FileProviderRegistry.getInstance()
+	fun loadGrammars() {
+		val fileProviderRegistry = FileProviderRegistry.getInstance()
         fileResolver = AssetsFileResolver(context.assets)
         fileProviderRegistry.addFileProvider(fileResolver)
 
@@ -55,12 +55,18 @@ class Main(context: ExtensionContext) : ExtensionAPI(context) {
             duneRunner = it
             RunnerManager.registerRunner(it)
         }
+	}
+	
+    override fun onExtensionLoaded() {
+    	loadGrammars()
     }
 
     override fun onInstalled() {
     }
     
-    override fun onLoad() {}
+    override fun onLoad() {
+		loadGrammars()
+	}
 
     override fun onUninstalled() {
         dispose()
