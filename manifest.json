@@ -1,17 +1,17 @@
 {
-    "$schema": "schema/schema.json",
-    "id": "io.kiquar.plugin.ocaml",
-    "name": "OCaml Support",
-    "mainClass": "io.kiquar.plugin.ocaml.Main",
-    "version": "0.1.0",
-    "description": "Xed-Editor extension for OCaml language and Dune build system support.",
-    "author": {
-        "displayName": "KiquarSL",
-        "github": "KiquarSL"
-    },
-    "license": "MIT",
-    "tags": ["ocaml", "dune", "ml", "opam", "highlighting", "runner"],
-    "minAppVersion": 95,
-    "maxAppVersion": null,
-    "repository": "https://github.com/KiquarSL/xed-ocaml"
+	"$schema": "schema/schema.json",
+	"id": "io.kiquar.plugin.ocaml",
+	"name": "OCaml Support",
+	"mainClass": "io.kiquar.plugin.ocaml.Main",
+	"version": "0.2.0",
+	"description": "Xed-Editor extension for OCaml language and Dune build system support.",
+	"author": {
+		"displayName": "KiquarSL",
+		"github": "KiquarSL"
+	},
+	"license": "MIT",
+	"tags": ["ocaml", "dune", "ml", "opam", "highlighting", "runner"],
+	"minAppVersion": 95,
+	"maxAppVersion": null,
+	"repository": "https://github.com/KiquarSL/xed-ocaml"
 }
