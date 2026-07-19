@@ -11,11 +11,12 @@ import com.rk.exec.TerminalCommand
 
 class DuneRunner(
     val icon: Icon? = BuiltinFileType.PROPERTIES.icon,
-    val supportedExtensions: List<String> = listOf("dune", "dune-project", "opam"),
+    val supportedExtensions: List<String> = listOf("opam"),
 ) : Runner() {
 
-    override val id = "ocaml.run.dune"
+    override val id = "ocaml.dune.run"
     override val label = "Dune Run"
+	override val names = listOf("dune", "dune-project")
 
     override fun getIcon(context: Context) = icon
 
