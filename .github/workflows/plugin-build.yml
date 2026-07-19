@@ -1,8 +1,6 @@
 name: Extension Compile
 
 on:
-    schedule:
-        - cron: "0 */24 * * *"
     push:
         branches:
             - main
