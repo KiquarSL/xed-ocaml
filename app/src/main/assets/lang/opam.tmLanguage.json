@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "version": "0.1.0",
+  "name": "opam",
+  "scopeName": "source.opam",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#sections" },
+    { "include": "#dependency_constraints" },
+    { "include": "#booleans" },
+    { "include": "#variables" },
+    { "include": "#strings" },
+    { "include": "#operators" },
+    { "include": "#numbers" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "begin": "#",
+          "end": "$",
+          "name": "comment.line.number-sign.opam"
+        }
+      ]
+    },
+    "sections": {
+      "patterns": [
+        {
+          "match": "^(opam-version|name|version|synopsis|description|author|authors|maintainer|license|homepage|doc|bug-reports|dev-repo|depends|depopts|conflicts|install|remove|tags|pin-depends|build|available|features|x-maintenance-intent)\\s*:",
+          "captures": {
+            "1": { "name": "keyword.other.field.opam" }
+          }
+        }
+      ]
+    },
+    "dependency_constraints": {
+      "patterns": [
+        {
+          "match": "\\{\\s*(>=|<=|!=|=|>|<)\\s*\"[^\"]*\"\\s*\\}",
+          "captures": {
+            "1": { "name": "keyword.operator.version.opam" }
+          }
+        },
+        {
+          "match": "\\{(with-test|with-doc|dev)\\}",
+          "name": "support.constant.flag.opam"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "match": "\\b(true|false)\\b",
+          "name": "constant.language.boolean.opam"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": "%%[a-zA-Z_]+|\\b(name|jobs)\\b",
+          "name": "variable.other.opam"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.opam",
+          "patterns": [
+            {
+              "match": "\\\\[\"\\\\]",
+              "name": "constant.character.escape.opam"
+            }
+          ]
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "(>=|<=|!=|=|>|<)",
+          "name": "keyword.operator.version.opam"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "\\b[0-9]+\\.[0-9]+(\\.[0-9]+)?\\b",
+          "name": "constant.numeric.version.opam"
+        }
+      ]
+    }
+  }
+}

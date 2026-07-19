@@ -1,0 +1,102 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "version": "0.1.0",
+  "name": "Dune",
+  "scopeName": "source.dune",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#stanzas" },
+    { "include": "#field_names" },
+    { "include": "#booleans" },
+    { "include": "#strings" },
+    { "include": "#variables" },
+    { "include": "#numbers" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "begin": ";",
+          "end": "$",
+          "name": "comment.line.semicolon.dune"
+        }
+      ]
+    },
+    "stanzas": {
+      "patterns": [
+        {
+          "match": "^\\s*\\((lang)\\s+(dune)\\s+([0-9.]+)\\)",
+          "captures": {
+            "1": { "name": "keyword.other.lang.dune" },
+            "2": { "name": "support.type.dune" },
+            "3": { "name": "constant.numeric.version.dune" }
+          }
+        },
+        {
+          "match": "^\\s*\\((library|executable|test|tests|rule|ocamllex|ocamlyacc|menhir|cinaps|install|copy_files|include|source_dir|env|package|dune_project|generate_opam_files|source|authors|maintainers|license|documentation|name|synopsis|description|depends|tags)\\b",
+          "captures": {
+            "1": { "name": "keyword.control.stanza.dune" }
+          }
+        }
+      ]
+    },
+    "field_names": {
+      "patterns": [
+        {
+          "match": "^\\s*\\(([a-zA-Z][-a-zA-Z0-9]*)\\s",
+          "captures": {
+            "1": { "name": "keyword.other.field.dune" }
+          }
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "match": "\\b(true|false)\\b",
+          "name": "constant.language.boolean.dune"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.dune",
+          "patterns": [
+            {
+              "match": "\\\\.|%%[a-zA-Z_]+",
+              "name": "constant.character.escape.dune"
+            }
+          ]
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": "%\\{[a-zA-Z_]+\\}",
+          "name": "variable.other.dune"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "\\b[0-9]+\\.[0-9]+(\\.[0-9]+)?\\b",
+          "name": "constant.numeric.version.dune"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "\\b(and|or|not)\\b",
+          "name": "keyword.operator.logical.dune"
+        }
+      ]
+    }
+  }
+}

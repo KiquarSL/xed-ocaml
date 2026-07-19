@@ -1,0 +1,268 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "version": "0.1.0",
+  "name": "OCaml",
+  "scopeName": "source.ocaml",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#char_literals" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#declarations" },
+    { "include": "#modules" },
+    { "include": "#operators" },
+    { "include": "#constructors" },
+    { "include": "#variables" },
+    { "include": "#types" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "begin": "\\(\\*\\*",
+          "end": "\\*\\)",
+          "name": "comment.block.documentation.ocaml",
+          "patterns": [
+            { "include": "#comments" }
+          ]
+        },
+        {
+          "begin": "\\(\\*",
+          "end": "\\*\\)",
+          "name": "comment.block.ocaml",
+          "patterns": [
+            { "include": "#comments" }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"\"\"",
+          "end": "\"\"\"",
+          "name": "string.quoted.triple.ocaml"
+        },
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.ocaml",
+          "patterns": [
+            {
+              "match": "\\\\[\"\\\\abfnrtv]",
+              "name": "constant.character.escape.ocaml"
+            },
+            {
+              "match": "\\\\x[0-9a-fA-F]{2}",
+              "name": "constant.character.escape.hex.ocaml"
+            },
+            {
+              "match": "\\\\[0-9]{3}",
+              "name": "constant.character.escape.octal.ocaml"
+            }
+          ]
+        }
+      ]
+    },
+    "char_literals": {
+      "match": "'\\\\.'|'[^'\\\\]'",
+      "name": "constant.character.ocaml"
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "\\b[0-9]+\\.[0-9]+([eE][+-]?[0-9]+)?\\b",
+          "name": "constant.numeric.float.ocaml"
+        },
+        {
+          "match": "\\b0[xX][0-9a-fA-F]+\\b",
+          "name": "constant.numeric.hex.ocaml"
+        },
+        {
+          "match": "\\b0[oO][0-7]+\\b",
+          "name": "constant.numeric.octal.ocaml"
+        },
+        {
+          "match": "\\b0[bB][01]+\\b",
+          "name": "constant.numeric.binary.ocaml"
+        },
+        {
+          "match": "\\b[0-9]+[lLn]?\\b",
+          "name": "constant.numeric.integer.ocaml"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(and|as|assert|begin|class|constraint|do|done|downto|else|end|exception|external|for|fun|function|functor|if|in|include|inherit|initializer|let|match|method|module|mutable|new|object|of|open|or|private|rec|sig|struct|then|to|try|type|val|virtual|when|while|with)\\b",
+          "name": "keyword.control.ocaml"
+        },
+        {
+          "match": "\\b(ref|not|incr|decr|succ|pred|abs|min_int|max_int|ignore|print_string|print_endline|print_int|print_float|read_line|read_int|read_float|string_of_int|int_of_string|string_of_float|float_of_string|open_in|open_out|close_in|close_out|input|output|flush|seek_in|seek_out|pos_in|pos_out|in_channel_length|out_channel_length|Array\\.|List\\.|String\\.|Map\\.|Set\\.|Hashtbl\\.)\\b",
+          "name": "support.function.ocaml"
+        },
+        {
+          "match": "\\b(true|false)\\b",
+          "name": "constant.language.boolean.ocaml"
+        },
+        {
+          "match": "\\b(None|Some|Left|Right|Ok|Error)\\b",
+          "name": "support.constant.option.ocaml"
+        },
+        {
+          "match": "\\b(unit|int|float|bool|char|string|list|array|option|exn|ref|format|lazy_t|int32|int64|nativeint)\\b",
+          "name": "support.type.ocaml"
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "match": "\\b(let)\\s+(rec\\s+)?([a-z][A-Za-z0-9_']*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.let.ocaml" },
+            "2": { "name": "keyword.other.rec.ocaml" },
+            "3": { "name": "entity.name.function.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(type)\\s+([a-z][A-Za-z0-9_']*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.type.ocaml" },
+            "2": { "name": "entity.name.type.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(exception)\\s+([A-Z][A-Za-z0-9_']*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.exception.ocaml" },
+            "2": { "name": "entity.name.type.exception.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(module)\\s+(type\\s+)?([A-Z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.module.ocaml" },
+            "2": { "name": "keyword.other.type.ocaml" },
+            "3": { "name": "entity.name.type.module.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(class)\\s+([a-z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.class.ocaml" },
+            "2": { "name": "entity.name.type.class.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(val)\\s+([a-z][A-Za-z0-9_']*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.val.ocaml" },
+            "2": { "name": "entity.name.function.val.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(method)\\s+([a-z][A-Za-z0-9_']*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.method.ocaml" },
+            "2": { "name": "entity.name.function.method.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(attribute)\\s*\\[\\[",
+          "name": "keyword.declaration.attribute.ocaml"
+        }
+      ]
+    },
+    "modules": {
+      "patterns": [
+        {
+          "match": "\\b(open)\\s+([A-Z][A-Za-z0-9_.]*)",
+          "captures": {
+            "1": { "name": "keyword.control.open.ocaml" },
+            "2": { "name": "entity.name.type.module.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(include)\\s+([A-Z][A-Za-z0-9_.]*)",
+          "captures": {
+            "1": { "name": "keyword.control.include.ocaml" },
+            "2": { "name": "entity.name.type.module.ocaml" }
+          }
+        },
+        {
+          "match": "\\b(fun)\\b",
+          "name": "keyword.control.fun.ocaml"
+        },
+        {
+          "match": "\\b(functor)\\b",
+          "name": "keyword.declaration.functor.ocaml"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "\\|>",
+          "name": "keyword.operator.pipe.ocaml"
+        },
+        {
+          "match": ">>=|>>|<<=|<<",
+          "name": "keyword.operator.bind.ocaml"
+        },
+        {
+          "match": "::|@",
+          "name": "keyword.operator.list.ocaml"
+        },
+        {
+          "match": "\\bor\\b",
+          "name": "keyword.operator.or.ocaml"
+        },
+        {
+          "match": "[:!#$%&*+./<=>?@\\\\^|~-]+",
+          "name": "keyword.operator.ocaml"
+        }
+      ]
+    },
+    "constructors": {
+      "patterns": [
+        {
+          "match": "\\b[A-Z][A-Za-z0-9_']*(?=[^a-z])",
+          "name": "entity.name.tag.constructor.ocaml"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": "\\b[a-z][A-Za-z0-9_']*(?=\\s*::)",
+          "name": "entity.name.function.ocaml"
+        },
+        {
+          "match": "\\b[a-z][A-Za-z0-9_']*(?=\\s*\\()",
+          "name": "entity.name.function.ocaml"
+        },
+        {
+          "match": "\\b[a-z][A-Za-z0-9_']*\\b",
+          "name": "variable.other.ocaml"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "match": "\\b([A-Z][A-Za-z0-9_']*)\\s*\\.",
+          "captures": {
+            "1": { "name": "entity.name.type.module.ocaml" }
+          }
+        },
+        {
+          "match": "'[a-z][A-Za-z0-9_']*",
+          "name": "entity.name.type.type-variable.ocaml"
+        }
+      ]
+    }
+  }
+}

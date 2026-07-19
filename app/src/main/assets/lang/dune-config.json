@@ -1,0 +1,53 @@
+{
+  "comments": {
+    "lineComment": ";"
+  },
+  "brackets": [
+    ["(", ")"],
+    ["[", "]"],
+    ["{", "}"]
+  ],
+  "autoClosingPairs": [
+    { "open": "(", "close": ")" },
+    { "open": "[", "close": "]" },
+    { "open": "{", "close": "}" },
+    { "open": "\"", "close": "\"" }
+  ],
+  "surroundingPairs": [
+    ["(", ")"],
+    ["[", "]"],
+    ["{", "}"],
+    ["\"", "\""]
+  ],
+  "folding": {
+    "markers": {
+      "start": "^\\s*\\(",
+      "end": "^\\s*\\)"
+    },
+    "offSide": false
+  },
+  "indentationRules": {
+    "decreaseIndentPattern": {
+      "pattern": "^\\s*\\)"
+    },
+    "increaseIndentPattern": {
+      "pattern": "^\\s*\\((library|executable|test|tests|rule|ocamllex|ocamlyacc|menhir|cinaps|install|copy_files|include|source_dir|env|package|dune_project|generate_opam_files|source|depends|tags)\\b"
+    }
+  },
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*;",
+      "action": {
+        "indent": "none",
+        "appendText": "; "
+      }
+    },
+    {
+      "beforeText": "^\\s*\\((library|executable|test|tests|package|dune_project)\\b.*$",
+      "afterText": "^\\s*$",
+      "action": {
+        "indent": "increase"
+      }
+    }
+  ]
+}

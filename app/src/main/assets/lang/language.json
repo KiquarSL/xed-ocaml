@@ -1,0 +1,22 @@
+{
+  "languages": [
+    {
+      "grammar": "lang/ocaml.tmLanguage.json",
+      "name": "OCaml",
+      "scopeName": "source.ocaml",
+      "languageConfiguration": "lang/ocaml-config.json"
+    },
+    {
+      "grammar": "lang/dune.tmLanguage.json",
+      "name": "Dune",
+      "scopeName": "source.dune",
+      "languageConfiguration": "lang/dune-config.json"
+    },
+    {
+      "grammar": "lang/opam.tmLanguage.json",
+      "name": "opam",
+      "scopeName": "source.opam",
+      "languageConfiguration": "lang/opam-config.json"
+    }
+  ]
+}
