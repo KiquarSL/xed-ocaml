@@ -22,6 +22,9 @@ eval $(opam env)
 
 # Install dune
 opam install dune
+
+# Add export to ~/.bashrc for add ocaml bins
+export PATH=$PATH:/home/.opam/default/bin
 ```
 
 Or using your system package manager:
