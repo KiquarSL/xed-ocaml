@@ -1,14 +1,6 @@
-# OCaml
+# OCaml Support
 
 Xed-Editor extension providing syntax highlighting, language configuration, and runners for OCaml and the Dune build system.
-
-## Supported Languages
-
-| Language | Extensions | TextMate Scope |
-|----------|-----------|----------------|
-| OCaml | `.ml`, `.mli`, `.mly`, `.mll` | `source.ocaml` |
-| Dune | `dune`, `dune-project` | `source.dune` |
-| opam | `.opam` | `source.opam` |
 
 ## Installation
 
@@ -33,10 +25,11 @@ opam install dune
 ```
 
 Or using your system package manager:
+WARNING: it can have old versions!
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ocaml dune opam
+apt install ocaml dune opam
 ```
 
 ## Building

@@ -24,6 +24,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "xed-haskell"
+rootProject.name = "xed-ocaml"
 include(":app")
  
