@@ -11,7 +11,7 @@ Install through the Xed-Editor extension marketplace, or download the latest rel
 To use the runners, install the OCaml toolchain:
 
 ```bash
-bash -c "sh <(curl https://opam.ocaml.org/install.sh)"
+curl https://opam.ocaml.org/install.sh | sh
 
 # Initialize opam
 opam init
