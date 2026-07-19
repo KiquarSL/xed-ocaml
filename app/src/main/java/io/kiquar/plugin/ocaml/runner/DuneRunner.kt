@@ -15,7 +15,7 @@ class DuneRunner(
 ) : Runner() {
 
     override val id = "ocaml.run.dune"
-    override val label = "Dune Build"
+    override val label = "Dune Run"
 
     override fun getIcon(context: Context) = icon
 
@@ -26,17 +26,18 @@ class DuneRunner(
     override suspend fun run(activity: Activity, fileObject: FileObject) {
         val workingDir = fileObject.getParentFile()?.getAbsolutePath()
         val ext = fileObject.getExtension()
+        val projectName = workingDir?.substringAfterLast("/")
         
         val command = when (ext) {
             "opam" -> TerminalCommand(
                 exe = "opam",
-                args = arrayOf("exec", "--", "dune", "build"),
+                args = arrayOf("exec", "--", "dune", "exec", projectName ?: "."),
                 id = id,
                 workingDir = workingDir,
             )
             else -> TerminalCommand(
                 exe = "dune",
-                args = arrayOf("build"),
+                args = arrayOf("exec", projectName ?: "."),
                 id = id,
                 workingDir = workingDir,
             )

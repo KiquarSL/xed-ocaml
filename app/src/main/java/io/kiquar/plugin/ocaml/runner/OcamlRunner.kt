@@ -31,8 +31,8 @@ class OcamlRunner(
         launchTerminal(
             activity = activity,
             terminalCommand = TerminalCommand(
-                exe = "/bin/ocamlfind",
-                args = arrayOf("opt", "-linkpkg", fileName, "-o", baseName, "&&", "./" + baseName),
+                exe = "/bin/ocamlopt",
+                args = arrayOf("opt", "-o", baseName, "&&", "./" + baseName),
                 id = id,
                 workingDir = workingDir,
             ),
