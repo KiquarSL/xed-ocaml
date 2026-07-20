@@ -20,7 +20,7 @@ class DuneRunner(
     override fun getIcon(context: Context) = icon
 
     override fun matcher(fileObject: FileObject): Boolean {
-        return supportedExtensions.contains(fileObject.getExtension())
+        return supportedExtensions.contains(fileObject.getExtension())  || fileObject.getName() == "dune" || fileObject.getName() == "dune-project"
     }
 
     override suspend fun run(activity: Activity, fileObject: FileObject) {
