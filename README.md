@@ -35,6 +35,13 @@ WARNING: it can have old versions!
 apt install ocaml dune opam
 ```
 
+Generate project
+```bash
+dune init project <name>
+```
+
+For run project open file `<name>.opam` or `dune-project`. Supported only `Dune` build sysyem.
+
 ## Building
 
 Debug build:
