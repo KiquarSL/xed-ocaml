@@ -16,7 +16,6 @@ class DuneRunner(
 
     override val id = "ocaml.dune.run"
     override val label = "Dune Run"
-	override val names = listOf("dune", "dune-project")
 
     override fun getIcon(context: Context) = icon
 
